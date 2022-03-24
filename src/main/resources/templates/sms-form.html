@@ -1,0 +1,37 @@
+<head>
+    <title>Twilio SMS Sender</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	<div id="main-content" class="container">
+        <div class="col-md-6">
+
+			<form class="form-inline" action="#" th:action="@{/sendSms}" th:object="${sms}" method="post">
+				<div class="form-group">
+                <p>To Number: <input type="text"  id="number" th:field="*{number}"/></p>
+                    <br/><p>Message: <textarea  id="message" th:field="*{message}"> </textarea></p>
+                </div>
+                <p> 
+                	<button id="send" class="btn btn-primary" type="submit">Send</button>
+                </p>
+                &nbsp &nbsp &nbsp &nbsp
+                <p>
+                	<a class="btn btn-success" href="/getMessages" role="button">Sent Messages</a>
+                </p>
+    			
+
+			</form>
+			<div th:switch="${error}">
+				<div th:case="null">
+				</div>
+				<div th:case="*" class="alert alert-primary" role="alert">
+					<p th:text="${error}"></p>
+				</div>
+			</div>
+        </div>
+    </div>
+</body>
+
