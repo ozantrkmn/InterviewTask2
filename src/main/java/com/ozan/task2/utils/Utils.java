@@ -8,14 +8,6 @@ import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 public class Utils {
 	
-	public static final boolean isEmpty(String x) {
-		return (x == null || x.trim().equals(""));
-	}
-	
-	public static final boolean isEmpty(Collection<?> x) {
-		return (x==null || x.isEmpty());
-	}
-
 	/**
 	 * checks if phone number is a valid Turkish number
 	 * 
