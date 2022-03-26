@@ -1,8 +1,5 @@
 package com.ozan.task2.controller;
 
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.thymeleaf.util.StringUtils;
 
 import com.ozan.task2.model.MessageResponse;
 import com.ozan.task2.model.SMS;
 import com.ozan.task2.service.ITwilioSMSService;
 import com.ozan.task2.utils.Utils;
-import com.twilio.base.ResourceSet;
-import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.rest.api.v2010.account.Message.Status;
 
 @Controller
@@ -38,7 +34,7 @@ public class TwilioController {
     	
     	ITwilioSMSService twilioSMSService = (ITwilioSMSService) appContext.getBean("twilioSMSService");
 
-        if(Utils.isEmpty(sms.getNumber()) || Utils.isEmpty(sms.getMessage())) {
+        if(StringUtils.isEmptyOrWhitespace(sms.getNumber()) || StringUtils.isEmptyOrWhitespace(sms.getMessage())) {
         	model.addAttribute("error", "Do not leave blank number and message!");
         	model.addAttribute("sms", new SMS());
         	return "sms-form";
